@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d0f0f4ade82cc54484e8be62aa3732a, type: 3}
+  m_Name: Samurai
+  m_EditorClassIdentifier: 
+  personajeJugable: {fileID: 4523274161635539799, guid: 0769243030c6ad44da0c078ab14ace47, type: 3}
+  imagen: {fileID: 1859128185, guid: 92472a03584e5964aa1a144aec21d314, type: 3}
+  nombre: Samurai
+  vidaMaxima: 4
+  armaduraMaxima: 4

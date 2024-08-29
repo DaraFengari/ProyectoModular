@@ -1,0 +1,24 @@
+{
+  "personajes": [
+    {
+      "numero": 1,
+      "vidaMaxima": 4,
+      "armaduraMaxima": 4
+    },
+    {
+      "numero": 2,
+      "vidaMaxima": 4,
+      "armaduraMaxima": 4
+    },
+    {
+      "numero": 3,
+      "vidaMaxima": 6,
+      "armaduraMaxima": 3
+    },
+    {
+      "numero": 4,
+      "vidaMaxima": 5,
+      "armaduraMaxima": 5
+    }
+  ]
+}

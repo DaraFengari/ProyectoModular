@@ -1,0 +1,54 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags:
+  - Enemigo
+  - Borde
+  - ammo
+  - ui
+  - Dinero
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - camera
+  - Water
+  - UI
+  - playerlayer
+  - enemilayer
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: layer 1
+    uniqueID: 2544731311
+    locked: 0
+  - name: 
+    uniqueID: 1222145811
+    locked: 0
