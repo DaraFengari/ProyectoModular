@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            background-image: url('/frontend/dash.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #2E8B57; /* Verde bosque */
+            text-align: center;
+        }
+
+        .content {
+            background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro con opacidad */
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(0, 128, 0, 0.3); /* Sombra verde */
+            max-width: 600px;
+            width: 100%;
+            color: #fff; /* Texto blanco para contraste con fondo oscuro */
+        }
+
+        h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #90EE90; /* Verde claro */
+        }
+
+        p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="content">
+        <h2>Dashboard</h2>
+        <p id="userInfo"></p>
+    </div>
+
+    <script>
+        const userData = JSON.parse(localStorage.getItem('userData'));
+
+        if (userData) {
+            const monthNames = [
+                'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+                'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+            ];
+
+            document.getElementById('userInfo').innerHTML = `
+                Nombre: ${userData.nombre}<br>
+                Año de Nacimiento: ${userData.anonacimiento}<br>
+                Mes de Nacimiento: ${monthNames[userData.mesnacimiento - 1]}<br>
+                Día de Nacimiento: ${userData.dianacimiento}<br>
+                Edad: ${userData.edad}
+            `;
+        } else {
+            document.getElementById('userInfo').innerHTML = 'No se pudo cargar la información del usuario.';
+        }
+    </script>
+</body>
+</html>

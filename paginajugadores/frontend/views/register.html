@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <style>
+        body {
+            background-image: url('/frontend/views/back.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        #postFormContainer {
+            background-color: rgba(255, 255, 255, 0.95);
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 15px rgba(0, 0, 139, 0.3);
+            max-width: 400px;
+            width: 100%;
+            text-align: center;
+            overflow-y: auto;
+            max-height: 90vh;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #1E90FF;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            text-align: left;
+            font-weight: bold;
+            color: #1E90FF;
+        }
+
+        input[type="text"],
+        select {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #1E90FF;
+            font-size: 16px;
+        }
+
+        .birth-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .birth-container select {
+            width: 31%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #1E90FF;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            background-color: #1E90FF;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            width: 100%;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #1C86EE;
+        }
+
+        #textoPost {
+            margin-top: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div id="postFormContainer">
+        <h2>Registro</h2>
+        <form id="postUsuario">
+            <label for="firstNamePost">Primer Nombre</label>
+            <input type="text" name="firstNamePost" id="nombre"/>
+
+            <label for="passPost">Contraseña</label>
+            <input type="text" name="passPost" id="password"/>
+
+            <label for="birthDate">Fecha de Nacimiento</label>
+            <div class="birth-container">
+                <select name="yearPost" id="anonacimiento">
+                    <!-- Opciones de año -->
+                </select>
+                <select name="monthPost" id="mesnacimiento">
+                    <!-- Opciones de mes -->
+                </select>
+                <select name="dayPost" id="dianacimiento">
+                    <!-- Opciones de día -->
+                </select>
+            </div>
+
+            <label for="agePost">Edad</label>
+            <input type="text" name="agePost" id="Edad"/>
+
+            <label for="mailPost">Correo</label>
+            <input type="text" name="mailPost" id="correo"/>
+
+            <input type="submit" value="Enviar"/>
+        </form>
+    </div>
+    <script>
+        // Generar opciones de años dinámicamente
+        const yearSelect = document.getElementById('anonacimiento');
+        const currentYear = new Date().getFullYear();
+        for (let i = 0; i < 90; i++) {
+            const yearOption = document.createElement('option');
+            yearOption.value = currentYear - i;
+            yearOption.textContent = currentYear - i;
+            yearSelect.appendChild(yearOption);
+        }
+
+        // Opciones de meses
+        const monthSelect = document.getElementById('mesnacimiento');
+        const months = [
+            'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+            'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+        ];
+        months.forEach((month, index) => {
+            const monthOption = document.createElement('option');
+            monthOption.value = index + 1;
+            monthOption.textContent = month;
+            monthSelect.appendChild(monthOption);
+        });
+
+        // Generar opciones de días dinámicamente
+        const daySelect = document.getElementById('dianacimiento');
+        for (let i = 1; i <= 31; i++) {
+            const dayOption = document.createElement('option');
+            dayOption.value = i;
+            dayOption.textContent = i;
+            daySelect.appendChild(dayOption);
+        }
+    </script>
+    <script src="/frontend/index.js"></script>
+</body>
+</html>
