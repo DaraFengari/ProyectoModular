@@ -35,6 +35,32 @@ if (formPost) {
         const pass = e.target.password.value;
         const mail = e.target.correo.value;
 
+        // Validación del correo
+        const emailPattern = /^[a-z0-9._%+-]+@(gmail|hotmail|outlook)+\.[a-z]{2,}$/;
+        if (!emailPattern.test(mail)) {
+            alert('Por favor, introduce un correo válido.');
+            return;
+        }
+
+        // Validación de la contraseña
+        if (pass.length < 8) {
+            alert('La contraseña debe tener al menos 8 caracteres.');
+            return;
+        }
+
+        // Validación de caracteres especiales, números, y letras en la contraseña
+        const passwordPattern = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        if (!passwordPattern.test(pass)) {
+            alert('La contraseña debe contener al menos una letra, un número y un carácter especial.');
+            return;
+        }
+
+        // Validación de nombre
+        if (nombre.length < 2) {
+            alert('El nombre debe tener al menos 2 caracteres.');
+            return;
+        }
+
         await fetch('http://127.0.0.1:3000/user/', {
             method: 'POST',
             headers: {
@@ -121,6 +147,18 @@ if (loginForm) {
         const correo = e.target.email.value;
         const password = e.target.password.value;
 
+        const emailPattern = /^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$/;
+        if (!emailPattern.test(correo)) {
+            alert('Por favor, introduce un correo válido.');
+            return;
+        }
+
+        // Validación de la contraseña
+        if (password.length < 8) {
+            alert('La contraseña debe tener al menos 8 caracteres.');
+            return;
+        }
+
         let loginMessage = '';
 
         await fetch('http://127.0.0.1:3000/user/login', {
@@ -144,6 +182,64 @@ if (loginForm) {
         document.getElementById('loginMessage').innerHTML = loginMessage;
     });
 }
+
+const formGlobalScores = document.getElementById('globalScores');
+
+if (formGlobalScores) {
+    formGlobalScores.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        let message = '';
+
+        await fetch('http://127.0.0.1:3000/user/escoreglobal')
+            .then((response) => response.json())
+            .then((data) => {
+                if (data.length > 0) {
+                    // Si hay resultados, crear una tabla con las puntuaciones
+                    let table = `
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>Puntaje</th>
+                                    <th>Habitaciones</th>
+                                    <th>Horas</th>
+                                    <th>Minutos</th>
+                                    <th>Segundos</th>
+                                    <th>Enemigos Derrotados</th>
+                                    <th>Nombre del Usuario</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                    `;
+                    data.forEach((item) => {
+                        table += `
+                            <tr>
+                                <td>${item.puntaje}</td>
+                                <td>${item.nhabitaciones}</td>
+                                <td>${item.horas}</td>
+                                <td>${item.minutos}</td>
+                                <td>${item.segundos}</td>
+                                <td>${item.enemigosderro}</td>
+                                <td>${item.nombre}</td>
+                            </tr>
+                        `;
+                    });
+                    table += `</tbody></table>`;
+                    message = table;
+                } else {
+                    message = 'No hay puntuaciones disponibles.';
+                }
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+                message = 'Ocurrió un error al obtener las puntuaciones.';
+            });
+
+        document.getElementById('globalScoresContainer').innerHTML = message;
+    });
+}
+
+// index.js
+
 
 
 console.log('Holiwis!');

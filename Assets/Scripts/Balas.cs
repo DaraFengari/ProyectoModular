@@ -41,18 +41,15 @@ public class Balas : MonoBehaviour
             transform.position = new Vector3(newPosition.x, newPosition.y, transform.position.z);
         }
         Vector2 objPosition = GameObject.FindWithTag("Player").GetComponent<Transform>().position;
-        print(objPosition.x);
 
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-            print("True enviado");
             if(other.CompareTag("Player"))
             {
                 if (Time.time - tiempoUltimaColision >= tiempoDeEspera)
                 {
-                   print("hit");
                    other.GetComponent<Combate>().TomarDaño(daño);
                     Destroy(gameObject);
                     //Actualiza el tiempo de la última colisión

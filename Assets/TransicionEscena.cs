@@ -13,22 +13,5 @@ public class TransicionEscena : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            StartCoroutine(CambiarEscena());
-        }
     }
 
-    IEnumerator CambiarEscena()
-    {
-        animator.SetTrigger("Iniciar");
-        
-        yield return new WaitForSeconds(animacionFinal.length);
-
-        //Cambiar escena
-        SceneManager.LoadScene(1);
-
-    }
-}

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imagen: {fileID: 21300000, guid: 1a298efc5f76af3458e666fa0ea219fa, type: 3}
   nombre: Reliquia
-  precio: 250
-  descripcion: Detiene el tiempo 5 segundos
+  precio: 7
+  descripcion: Aumenta velocidad pero reduce armadura

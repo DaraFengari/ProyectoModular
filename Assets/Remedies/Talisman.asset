@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imagen: {fileID: 21300000, guid: 809c5f218ab30cf4bab162406852b378, type: 3}
   nombre: Talisman
-  precio: 220
-  descripcion: Aumenta la velocidad del jugador
+  precio: 8
+  descripcion: Aumenta armadura pero reduce velocidad

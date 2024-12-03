@@ -22,12 +22,12 @@ public class rotation : MonoBehaviour
 
         if (player.x < gameObject.transform.position.x && (gameObject != null))
         {
-            rot = 180;
-            gameObject.transform.rotation = Quaternion.Euler(0, rot, 0);
+            gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
         }
         else if(player.x > gameObject.transform.position.x)
         {
-            gameObject.transform.rotation = Quaternion.Euler(0, 0, 0);
+            rot = 180;
+            gameObject.transform.rotation = Quaternion.Euler(0, rot, 0);
         }
     }
 

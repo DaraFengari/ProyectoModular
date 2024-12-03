@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: Samurai
   m_EditorClassIdentifier: 
   personajeJugable: {fileID: 4523274161635539799, guid: 0769243030c6ad44da0c078ab14ace47, type: 3}
-  imagen: {fileID: 1859128185, guid: 92472a03584e5964aa1a144aec21d314, type: 3}
+  imagen: {fileID: -284869357, guid: f0846b2b8aa4be249b47c609f6b884d2, type: 3}
   nombre: Samurai
   vidaMaxima: 4
   armaduraMaxima: 4
+  tempvida: 0
+  temparma: 0
+  velocidad: 40

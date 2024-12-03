@@ -6,7 +6,6 @@ public class Seeker : MonoBehaviour
 {
     public float baseSpeed;
     public bool flee;
-    private Vector2 targetPosition;
     private float fleeDuration = 1.0f;
 
     void Start()
@@ -18,29 +17,23 @@ public class Seeker : MonoBehaviour
 
     void Update()
     {
+        var step= baseSpeed * Time.deltaTime;
         // Actualizar la posición de destino del jugador
         Vector2 targetPosition = GameObject.FindWithTag("Player").GetComponent<Transform>().position;
 
-        // Calcular la dirección hacia el jugador
-        Vector2 direction = (targetPosition - (Vector2)transform.position).normalized;
-        float distanceToPlayer = Vector2.Distance(transform.position, targetPosition);
-
         if(flee==false)
         {
-            Vector2 newPosition = (Vector2)transform.position + direction * baseSpeed * Time.deltaTime;
-            transform.position = new Vector3(newPosition.x, newPosition.y, transform.position.z);
+            transform.position = Vector2.MoveTowards(transform.position, targetPosition, step);
         }
         else
         {
             StartCoroutine(AccelerateForDuration());
-            Vector2 fleeDirection = -direction; // Alejarse del jugador
-            Vector2 fleePosition = (Vector2)transform.position + fleeDirection * baseSpeed * Time.deltaTime;
-            transform.position = new Vector3(fleePosition.x, fleePosition.y, transform.position.z);
+            transform.position = Vector2.MoveTowards(transform.position, targetPosition, -step);
         }
         
     }
 
-    IEnumerator AccelerateForDuration()
+    private IEnumerator AccelerateForDuration()
     {
         yield return new WaitForSeconds(fleeDuration);
         flee = false;

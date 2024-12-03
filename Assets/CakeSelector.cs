@@ -7,6 +7,8 @@ using UnityEngine.SceneManagement;
 
 public class PastelSelector : MonoBehaviour
 {
+    private PowerCakes chui;
+    private Monedas monedero;
     private List<int> CakeIndex = new List<int>();
     [SerializeField] private Image imagen1;
     [SerializeField] private Image imagen2;
@@ -25,10 +27,10 @@ public class PastelSelector : MonoBehaviour
     private void Start()
     {
         gameManagger = GameManagger.Instance;
-        //GameObject.Find GameObject
-        coin = 300;
+        chui = GameObject.Find("pastelista").GetComponent<PowerCakes>();
+        coin = GameObject.Find("monedascontroll").GetComponent<Monedas>().cantidadMonedas;
 
-        while (CakeIndex.Count < 3)
+        while (CakeIndex.Count < 5)
         {
             int randomIndex = Random.Range(0, 5);
             if (!CakeIndex.Contains(randomIndex))
@@ -63,6 +65,7 @@ public class PastelSelector : MonoBehaviour
         if (coin >= gameManagger.pasteles[index1].precio)
         {
           ComprarPastel(index1);
+            Debug.Log(index1);
         }
         else
         {
@@ -74,7 +77,8 @@ public class PastelSelector : MonoBehaviour
     {
         if (coin >= gameManagger.pasteles[index2].precio)
         {
-           ComprarPastel(index2);
+            ComprarPastel(index2);
+            Debug.Log(index2);
         }
         else
         {
@@ -86,7 +90,8 @@ public class PastelSelector : MonoBehaviour
     {
         if (coin >= gameManagger.pasteles[index3].precio)
         {
-          ComprarPastel(index3);
+            ComprarPastel(index3);
+            Debug.Log(index3);
         }
         else
         {
@@ -96,11 +101,15 @@ public class PastelSelector : MonoBehaviour
 
     public void ComprarPastel(int indice)
     {
+        Debug.Log("vas por buen camino 1");
         int pastelPrecio = gameManagger.pasteles[indice].precio;
-        if (Monedas.Instance.GastarMonedas(pastelPrecio))
-        {
-            Debug.Log("Pastel comprado: " + gameManagger.pasteles[indice].nombre);
-        }
-        
+
+        Monedas.moneda.GastarMonedas(pastelPrecio);
+        coin = GameObject.Find("monedascontroll").GetComponent<Monedas>().cantidadMonedas;
+        //{
+        Debug.Log("Pastel comprado: " + gameManagger.pasteles[indice].nombre);
+        //}
+        chui.Poderes(indice+1);
+
     }
 }

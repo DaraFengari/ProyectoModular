@@ -13,6 +13,7 @@ public class dmgtl : MonoBehaviour
     {
         if (Time.time >= nextAttackTime && Input.GetMouseButtonDown(0))
         {
+            gameObject.GetComponent<Animator>().SetBool("attacking", true);
             Golpe();
             nextAttackTime = Time.time + delayEntreGolpes; // Actualiza el tiempo del próximo golpe
         }

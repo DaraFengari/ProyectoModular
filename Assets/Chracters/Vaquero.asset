@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: Vaquero
   m_EditorClassIdentifier: 
   personajeJugable: {fileID: 1310856268539223241, guid: f582f978311b2c14ca66aedafde0e73a, type: 3}
-  imagen: {fileID: 1320263452, guid: d4b099145aa72234299a681a6b3f8080, type: 3}
+  imagen: {fileID: 1252575037, guid: ad3dec0f9c3e45445b0f225e87a4d664, type: 3}
   nombre: Vaquero
   vidaMaxima: 5
   armaduraMaxima: 3
+  tempvida: 0
+  temparma: 0
+  velocidad: 40

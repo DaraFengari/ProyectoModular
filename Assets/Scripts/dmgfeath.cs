@@ -15,13 +15,22 @@ public class dmgfeath : MonoBehaviour
     {
         if (Time.time >= nextAttackTime && Input.GetMouseButtonDown(0))
         {
+            gameObject.GetComponent<Animator>().SetBool("attacking", true);
             Golpe();
             nextAttackTime = Time.time + delayEntreGolpes; // Actualiza el tiempo del próximo golpe
+            //Debug.Log("so it goes");
+            StartCoroutine(pacifism());
         }
     }
 
     private void Golpe()
     {
         Instantiate(pluma, controladorGolpe.position, controladorGolpe.rotation);
+    }
+
+    private IEnumerator pacifism()
+    {
+        yield return new WaitForSeconds(0.2f);
+        gameObject.GetComponent<Animator>().SetBool("attacking", false);
     }
 }

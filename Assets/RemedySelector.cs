@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class RemedySelector : MonoBehaviour
 {
     private List<int> RemedyIndex = new List<int>();
+    private PowerRemedies chuy;
     [SerializeField] private Image imagen1;
     [SerializeField] private Image imagen2;
     [SerializeField] private Image imagen3;
@@ -26,7 +27,8 @@ public class RemedySelector : MonoBehaviour
     void Start()
     {
         gameMannager = GameMannager.Instance;
-        coin = 300;
+        chuy = GameObject.Find("Curandero").GetComponent<PowerRemedies>();
+        coin = GameObject.Find("monedascontroll").GetComponent<Monedas>().cantidadMonedas;
         while (RemedyIndex.Count < 3)
         {
             int randomIndex = Random.Range(0, 5);
@@ -96,11 +98,12 @@ public class RemedySelector : MonoBehaviour
     }
     public void ComprarRemedio(int indice)
     {
+        Debug.Log("vas por buen camino 1");
         int remedioPrecio = gameMannager.remedios[indice].precio;
-        if (Monedas.Instance.GastarMonedas(remedioPrecio))
-        {
-            Debug.Log("Pastel comprado: " + gameMannager.remedios[indice].nombre);
-        }
+        Monedas.moneda.GastarMonedas(remedioPrecio);
+        coin = GameObject.Find("monedascontroll").GetComponent<Monedas>().cantidadMonedas;
+        Debug.Log("Remedio comprado: " + gameMannager.remedios[indice].nombre);
+        chuy.Powers(indice + 1);
 
     }
 

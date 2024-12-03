@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class NewBehaviourScript : MonoBehaviour
 {
     float speed;
     // Start is called before the first frame update
-    void Start()
+    public void speedchange()
     {
-        speedset(30);
+        speed = gameObject.GetComponent<Combate>().velocidad;
+        //speedset(30);
     }
 
     // Update is called once per frame
@@ -20,13 +22,20 @@ public class NewBehaviourScript : MonoBehaviour
         if (Input.GetKey("d"))
         {
             moveX += speed * Time.deltaTime;
-            gameObject.GetComponent<SpriteRenderer>().flipX = false;
+            if (gameObject.GetComponent<SpriteRenderer>().flipX)
+            {
+                gameObject.GetComponent<SpriteRenderer>().flipX = false;
+            }   
         }
 
         if (Input.GetKey("a"))
         {
             moveX -= speed * Time.deltaTime;
-            gameObject.GetComponent<SpriteRenderer>().flipX = true;
+            if(!gameObject.GetComponent<SpriteRenderer>().flipX)
+            {
+                gameObject.GetComponent<SpriteRenderer>().flipX = true;
+            }
+            
         }
 
         if (Input.GetKey("w"))
@@ -43,6 +52,7 @@ public class NewBehaviourScript : MonoBehaviour
         {
             gameObject.transform.Translate(moveX, moveY, 0);
             gameObject.GetComponent<Animator>().SetBool("moving", true);
+            gameObject.GetComponent<Animator>().GetBool("moving");
         }
         else
         {

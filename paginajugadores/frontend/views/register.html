@@ -53,6 +53,16 @@
             font-size: 16px;
         }
 
+        input[type="password"],
+        select {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            border: 1px solid #1E90FF;
+            font-size: 16px;
+        }
+
         .birth-container {
             display: flex;
             justify-content: space-between;
@@ -93,35 +103,28 @@
         <h2>Registro</h2>
         <form id="postUsuario">
             <label for="firstNamePost">Primer Nombre</label>
-            <input type="text" name="firstNamePost" id="nombre"/>
-
+            <input type="text" name="firstNamePost" id="nombre" required minlength="2" title="El nombre debe tener al menos 2 caracteres."/>
+            
             <label for="passPost">Contraseña</label>
-            <input type="text" name="passPost" id="password"/>
+            <input type="password" name="passPost" id="password" required minlength="8" title="La contraseña debe tener al menos 8 caracteres."/>
 
             <label for="birthDate">Fecha de Nacimiento</label>
             <div class="birth-container">
-                <select name="yearPost" id="anonacimiento">
-                    <!-- Opciones de año -->
-                </select>
-                <select name="monthPost" id="mesnacimiento">
-                    <!-- Opciones de mes -->
-                </select>
-                <select name="dayPost" id="dianacimiento">
-                    <!-- Opciones de día -->
-                </select>
+                <select name="yearPost" id="anonacimiento"></select>
+                <select name="monthPost" id="mesnacimiento"></select>
+                <select name="dayPost" id="dianacimiento"></select>
             </div>
 
-            <label for="agePost">Edad</label>
-            <input type="text" name="agePost" id="Edad"/>
-
             <label for="mailPost">Correo</label>
-            <input type="text" name="mailPost" id="correo"/>
+            <input type="text" name="mailPost" id="correo" required pattern="[a-z0-9._%+-]+@(gmail|hotmail|outlook)\.com$" title="Introduce un correo válido."/>
+
+            <input type="hidden" name="agePost" id="Edad"/> <!-- Campo oculto para la edad calculada -->
 
             <input type="submit" value="Enviar"/>
         </form>
     </div>
     <script>
-        // Generar opciones de años dinámicamente
+        // Generar opciones de años
         const yearSelect = document.getElementById('anonacimiento');
         const currentYear = new Date().getFullYear();
         for (let i = 0; i < 90; i++) {
@@ -131,12 +134,9 @@
             yearSelect.appendChild(yearOption);
         }
 
-        // Opciones de meses
+        // Generar opciones de meses
         const monthSelect = document.getElementById('mesnacimiento');
-        const months = [
-            'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
-            'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
-        ];
+        const months = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
         months.forEach((month, index) => {
             const monthOption = document.createElement('option');
             monthOption.value = index + 1;
@@ -144,7 +144,7 @@
             monthSelect.appendChild(monthOption);
         });
 
-        // Generar opciones de días dinámicamente
+        // Generar opciones de días
         const daySelect = document.getElementById('dianacimiento');
         for (let i = 1; i <= 31; i++) {
             const dayOption = document.createElement('option');
@@ -152,6 +152,28 @@
             dayOption.textContent = i;
             daySelect.appendChild(dayOption);
         }
+
+        // Calcular la edad en función de la fecha de nacimiento
+        const form = document.getElementById('postUsuario');
+        form.addEventListener('submit', function (event) {
+            const year = document.getElementById('anonacimiento').value;
+            const month = document.getElementById('mesnacimiento').value;
+            const day = document.getElementById('dianacimiento').value;
+
+            // Obtener la fecha de nacimiento y calcular la edad
+            const birthDate = new Date(year, month - 1, day);
+            const today = new Date();
+            let age = today.getFullYear() - birthDate.getFullYear();
+            const monthDiff = today.getMonth() - birthDate.getMonth();
+
+            // Ajustar si aún no ha cumplido años este año
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+
+            // Asignar la edad calculada al campo oculto
+            document.getElementById('Edad').value = age;
+        });
     </script>
     <script src="/frontend/index.js"></script>
 </body>

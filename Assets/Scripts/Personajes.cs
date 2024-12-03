@@ -11,6 +11,6 @@ public class Personajes : ScriptableObject
 
     public string nombre;
 
-    public int vidaMaxima, armaduraMaxima;
+    public int vidaMaxima, armaduraMaxima,tempvida,temparma, velocidad;
 
 }

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imagen: {fileID: 21300000, guid: 22047f3610528b74591e1dc7be7ef2cd, type: 3}
   nombre: Red Velvet
-  precio: 200
-  descripcion: Aumento de poder
+  precio: 7
+  descripcion: Aumentar la vida en un 50%

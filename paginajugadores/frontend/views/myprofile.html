@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            background-image: url('/frontend/dash.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-position: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #2E8B57; /* Verde bosque */
+        }
+
+        /* Barra lateral */
+        .sidebar {
+            height: 100%;
+            width: 250px;
+            position: fixed;
+            top: 0;
+            left: -250px;
+            background-color: #111;
+            padding-top: 60px;
+            transition: 0.3s;
+        }
+
+        .sidebar a {
+            padding: 10px 15px;
+            text-decoration: none;
+            font-size: 18px;
+            color: #fff;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidebar a:hover {
+            background-color: #575757;
+        }
+
+        .sidebar button {
+            background: none;
+            border: none;
+            font-size: 18px;
+            color: white;
+            padding: 10px;
+            cursor: pointer;
+            text-align: left;
+            width: 100%;
+        }
+
+        /* Botón para abrir/cerrar la barra lateral */
+        .open-btn {
+            font-size: 20px;
+            cursor: pointer;
+            background-color: #2E8B57;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 100;
+            transition: 0.3s;
+        }
+
+        .content {
+            background-color: rgba(0, 0, 0, 0.7); /* Fondo oscuro con opacidad */
+            padding: 40px;
+            border-radius: 15px;
+            box-shadow: 0px 0px 20px rgba(0, 128, 0, 0.3); /* Sombra verde */
+            max-width: 600px;
+            width: 100%;
+            color: #fff; /* Texto blanco para contraste con fondo oscuro */
+            text-align: center;
+            margin-left: auto; /* Alineación central */
+            margin-right: auto; /* Alineación central */
+        }
+
+        h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #90EE90; /* Verde claro */
+        }
+
+        p {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+        }
+
+        /* Estilo para cuando la barra lateral esté visible */
+        .active {
+            left: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Botón para abrir la barra lateral -->
+    <button class="open-btn" onclick="toggleSidebar()">☰</button>
+
+    <!-- Barra lateral -->
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" onclick="goToGlobalScore()">Puntaje Global</a>
+        <a href="javascript:void(0)" onclick="goToProfile()">Mis Puntuaciones</a>
+    </div>
+
+    <!-- Contenido del dashboard -->
+    <div class="content">
+        <h2>Mi Perfil</h2>
+        <p id="userInfo"></p>
+    </div>
+
+    <script>
+        const userData = JSON.parse(localStorage.getItem('userData'));
+
+        if (userData) {
+            const monthNames = [
+                'Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio',
+                'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'
+            ];
+
+            document.getElementById('userInfo').innerHTML = `
+                Nombre: ${userData.nombre}<br>
+                Año de Nacimiento: ${userData.anonacimiento}<br>
+                Mes de Nacimiento: ${monthNames[userData.mesnacimiento - 1]}<br>
+                Día de Nacimiento: ${userData.dianacimiento}<br>
+                Edad: ${userData.edad}
+            `;
+        } else {
+            document.getElementById('userInfo').innerHTML = 'No se pudo cargar la información del usuario.';
+        }
+
+        // Función para abrir/cerrar la barra lateral
+        function toggleSidebar() {
+            const sidebar = document.getElementById("mySidebar");
+            sidebar.classList.toggle('active');
+        }
+
+        // Función para ir a "Puntaje Global"
+        function goToGlobalScore() {
+            window.location.href = '/frontend/views/globalscore.html';
+        }
+
+        // Función para ir a "Mi Perfil"
+        function goToProfile() {
+            window.location.href = '/frontend/views/dashboard.html';
+        }
+    </script>
+</body>
+</html>

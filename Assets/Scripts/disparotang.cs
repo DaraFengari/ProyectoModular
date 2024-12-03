@@ -7,8 +7,8 @@ public class disparotang : MonoBehaviour
     [SerializeField] private GameObject balatnk;
 
     private int contadorDisparos = 0;
-    private int maxDisparos = 5;
-    private float tiempoEntreDisparos = 0.1f;
+    private int maxDisparos = 2;
+    private float tiempoEntreDisparos = 0.5f;
     private float tiempoSuspension = 5f;
     private float timer;
 

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imagen: {fileID: 21300000, guid: ecdb74a7913b3134ca249fdba98d1e15, type: 3}
   nombre: Pocima
-  precio: 180
-  descripcion: Inmunidad a ataques
+  precio: 9
+  descripcion: Obtienes escudo pero disminuyes velocidad

@@ -7,12 +7,29 @@ public class feather : MonoBehaviour
     [SerializeField] private float velocidad;
     [SerializeField] private int daño;
     private Vector3 initialDirection; // Almacena la dirección inicial
-
+    private GameObject player;
     // Start is called before the first frame update
     void Start()
     {
-        // Obtén la posición del clic en el plano de la cámara
+        player = GameObject.FindWithTag("Player");
+
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        if (mousePosition.x < player.transform.position.x)
+        {
+
+                GameObject.FindGameObjectWithTag("Player").GetComponent<SpriteRenderer>().flipX = true;
+            
+        }
+        else
+        if (mousePosition.x > player.transform.position.x)
+        {
+            //if(player.GetComponent<Animator>().GetBool("moving") && !player.GetComponent<SpriteRenderer>().flipX){
+                GameObject.FindGameObjectWithTag("Player").GetComponent<SpriteRenderer>().flipX = false;
+            
+            
+        }
+
         // Calcula la dirección hacia la posición del clic
         initialDirection = (mousePosition - transform.position).normalized; // Normaliza la dirección
         // Direccion para la rotacion

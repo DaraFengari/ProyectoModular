@@ -15,17 +15,26 @@ public class dmgenemy : MonoBehaviour
 
             if (timer >= 3f)
             {
+                gameObject.GetComponent<Animator>().SetBool("attack", true);
                 timer = 0;
                 Collider2D[] objetos = Physics2D.OverlapCircleAll(controladorGolpeM.position, radioGolpe);
                 foreach (Collider2D colisionador in objetos)
                 {
                     if (colisionador.CompareTag("Player"))
                     {
-                        colisionador.transform.GetComponent<Combate>().TomarDaño(1);
+                        Debug.Log("entro");
+                        colisionador.GetComponent<Combate>().TomarDaño(1);
+                        Debug.Log("daño puesto");
                         GetComponent<Seeker>().flee = true;
                     }
                 }
-
+                StartCoroutine(returtonormal());
             }
+    }
+
+    private IEnumerator returtonormal()
+    {
+        yield return new WaitForSeconds(0.5f);
+        gameObject.GetComponent<Animator>().SetBool("attack", false);
     }
 }

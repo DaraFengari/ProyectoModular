@@ -8,6 +8,7 @@ using UnityEngine.SceneManagement;
 public class GrocerySelector : MonoBehaviour
 {
     private List<int> GroceryIndex = new List<int>();
+    private PowerStore chuies;
     [SerializeField] private Image imagen1;
     [SerializeField] private Image imagen2;
     [SerializeField] private Image imagen3;
@@ -23,7 +24,8 @@ public class GrocerySelector : MonoBehaviour
     void Start()
     {
         gameMaanager = GameMaanager.Instance;
-        coin = 300;
+        chuies = GameObject.Find("Store").GetComponent<PowerStore>();
+        coin = GameObject.Find("monedascontroll").GetComponent<Monedas>().cantidadMonedas;
         while (GroceryIndex.Count < 3)
         {
             int randomIndex = Random.Range(0, 5);
@@ -91,11 +93,12 @@ public class GrocerySelector : MonoBehaviour
     }
     public void ComprarGrocery(int indice)
     {
-        int remedioPrecio = gameMaanager.grocery[indice].precio;
-        if (Monedas.Instance.GastarMonedas(remedioPrecio))
-        {
-            Debug.Log("Pastel comprado: " + gameMaanager.grocery[indice].nombre);
-        }
+        int tiendaPrecio = gameMaanager.grocery[indice].precio;
+        Monedas.moneda.GastarMonedas(tiendaPrecio);
+        coin = GameObject.Find("monedascontroll").GetComponent<Monedas>().cantidadMonedas;
+
+        Debug.Log("Producto comprado: " + gameMaanager.grocery[indice].nombre);
+        chuies.Poderes(indice+1);
 
     }
 

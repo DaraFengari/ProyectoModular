@@ -16,8 +16,7 @@ public class Enemig : MonoBehaviour
     public void TomarDaño(float daño)
     {
         vida -= daño;
-        print(vida);
-        print(daño);
+        Debug.Log(vida);
 
         if (vida <= 0)
         {
@@ -28,6 +27,6 @@ public class Enemig : MonoBehaviour
 
     private void Muerte()
     {
-        animator.SetTrigger("Muerte");
+        Monedas.moneda.EnemigosDerrotados(1);
     }
 }

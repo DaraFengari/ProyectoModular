@@ -68,7 +68,7 @@ AnimatorController:
     m_Controller: {fileID: 0}
   m_AnimatorLayers:
   - serializedVersion: 5
-    m_Name: Base Layer
+    m_Name: Iniciar
     m_StateMachine: {fileID: 2719698814132501162}
     m_Mask: {fileID: 0}
     m_Motions: []
@@ -86,7 +86,7 @@ AnimatorStateMachine:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Base Layer
+  m_Name: Iniciar
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -7715201087571524490}

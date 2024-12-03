@@ -27,23 +27,27 @@ public class burb : MonoBehaviour
         transform.position += initialDirection * Time.deltaTime * velocidad; // Ajusta la velocidad según sea necesario
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+
+
+    private void OnCollisionEnter2D(Collision2D other)
     {
+        
         // Verifica que el objeto colisionado tenga la etiqueta "Enemigo", "Player" o "Borde"
-        if (other.CompareTag("Enemigo")|| other.CompareTag("Borde"))
+        if (other.gameObject.CompareTag("Enemigo")|| other.gameObject.CompareTag("Borde"))
         {
+            Debug.Log("colision detectada");
             // Cambia la dirección del objeto al azar entre los ángulos especificados
             CambiarDireccion();
 
             // Acelera la velocidad del objeto en 1.5
-            velocidad *= 1.5f;
+            velocidad += velocidad * 0.3f;
         }
 
         // Verifica que el objeto colisionado tenga la etiqueta "Enemigo"
-        if (other.CompareTag("Enemigo"))
+        if (other.gameObject.CompareTag("Enemigo"))
         {
             // Obtén el componente Enemig del objeto colisionado
-            Enemig enemigo = other.GetComponent<Enemig>();
+            Enemig enemigo = other.gameObject.GetComponent<Enemig>();
 
             // Verifica que el componente Enemig no sea nulo
             if (enemigo != null)
@@ -64,6 +68,11 @@ public class burb : MonoBehaviour
         Vector3 newDirection = Quaternion.AngleAxis(newAngle, Vector3.forward) * originalRotation * Vector3.right;
         // Actualiza la dirección inicial con la nueva dirección
         initialDirection = newDirection.normalized;
+    }
+
+    private void OnDestroy()
+    {
+        GameObject.FindWithTag("Player").GetComponent<Animator>().SetBool("attacking", false);
     }
 }
 

@@ -14,14 +14,22 @@ public class dmgbrb : MonoBehaviour
     {
         if (Time.time >= nextAttackTime && Input.GetMouseButtonDown(0))
         {
+            gameObject.GetComponent<Animator>().SetBool("attacking", true);
             Golpe();
             nextAttackTime = Time.time + delayEntreGolpes; // Actualiza el tiempo del próximo golpe
+            StartCoroutine(returtonormal());
         }
     }
 
     private void Golpe()
     {
         Instantiate(brb, controladorGolpe.position, controladorGolpe.rotation);
+    }
+
+    private IEnumerator returtonormal()
+    {
+        yield return new WaitForSeconds(0.2f);
+        gameObject.GetComponent<Animator>().SetBool("attacking", false);
     }
 }
 

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imagen: {fileID: 21300000, guid: 48b6df899bc11544bb026a270e615a5f, type: 3}
   nombre: Imposible
-  precio: 150
-  descripcion: Invisibilidad
+  precio: 7
+  descripcion: Aumentar la armadura en un 50%

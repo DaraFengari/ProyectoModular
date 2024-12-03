@@ -13,7 +13,10 @@ MonoBehaviour:
   m_Name: Pirata
   m_EditorClassIdentifier: 
   personajeJugable: {fileID: 3449221270774877486, guid: 9ce9896e58165574c8c4caae86b34807, type: 3}
-  imagen: {fileID: 1186784736, guid: 63ab47995001374469afcb51e731287d, type: 3}
+  imagen: {fileID: -1545913892, guid: c7dfe8dd10f0b414bb3a81f2e0782f05, type: 3}
   nombre: Pirata
   vidaMaxima: 6
   armaduraMaxima: 2
+  tempvida: 0
+  temparma: 0
+  velocidad: 40

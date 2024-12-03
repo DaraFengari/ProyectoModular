@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   imagen: {fileID: 21300000, guid: 1776179a97722ab43b848a9478ae5e5a, type: 3}
   nombre: Runa
-  precio: 150
-  descripcion: "Incrementa la salud m\xE1xima del jugador por un periodo corto."
+  precio: 5
+  descripcion: Obtienes escudo pero disminuye armadura
